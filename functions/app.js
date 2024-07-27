@@ -20,7 +20,7 @@ const download = require("../apis/audio_files/download.js");
 const playlist = require("../apis/playlist/playlist.js");
 const deviceInfo = require("../apis/device_info/device_info.js");
 const test = require("../html/test.js");
-app.use("/user", auth);
+app.use("/.netlify/functions/app/user", auth);
 
 app.use("/avatars", express.static("avatars"));
 app.use("/song_avatar", express.static("song_avatars"));
