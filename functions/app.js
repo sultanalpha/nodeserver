@@ -48,7 +48,7 @@ app.use((err, req, res, next) => {
 
 
 router.get("/", (req, res) => {
-    res.send("App is running..");
+    res.send("App is running running a lot..");
 });
 
 app.use("/.netlify/functions/app", router);
