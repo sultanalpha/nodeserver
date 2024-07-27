@@ -1,0 +1,1 @@
+create view allplaylistview as select p.playlist_id, p.playlist_name, u.users_id, u.users_name from playlist as p, users as u where u.users_id = p.users_id;
