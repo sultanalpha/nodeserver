@@ -20,8 +20,8 @@ const detector = new DeviceDetector({
 var pool = mysql
   .createPool({
     host: 'sql.freedb.tech',
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
+    user: 'freedb_sultanking',
+    password: '%E!9Sq5BpgXpVyE',
     database: process.env.DB_DATABASE,
     port: process.env.DB_PORT
   })
