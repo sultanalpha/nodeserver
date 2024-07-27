@@ -22,21 +22,21 @@ const deviceInfo = require("../apis/device_info/device_info.js");
 const test = require("../html/test.js");
 app.use("/.netlify/functions/app/user", auth);
 
-app.use("/avatars", express.static("avatars"));
-app.use("/song_avatar", express.static("song_avatars"));
-app.use("/author_avatar", express.static("authors_avatar"));
-app.use("/song_remix_avatars", express.static("song_remix_avatars"));
+app.use("/.netlify/functions/app/avatars", express.static("avatars"));
+app.use("/.netlify/functions/app/song_avatar", express.static("song_avatars"));
+app.use("/.netlify/functions/app/author_avatar", express.static("authors_avatar"));
+app.use("/.netlify/functions/app/song_remix_avatars", express.static("song_remix_avatars"));
 
-app.use("/msg", msg);
-app.use("/songs", songs);
-app.use("/remix_songs", remixSongs);
-app.use("/upload_song", upload);
-app.use("/upload_remix_song", uploadRemix);
-app.use("/download_song", download);
-app.use("/test", test);
-app.use("/authors", authors);
-app.use("/playlist", playlist);
-app.use("/device_info", deviceInfo);
+app.use("/.netlify/functions/app/msg", msg);
+app.use("/.netlify/functions/app/songs", songs);
+app.use("/.netlify/functions/app/remix_songs", remixSongs);
+app.use("/.netlify/functions/app/upload_song", upload);
+app.use("/.netlify/functions/app/upload_remix_song", uploadRemix);
+app.use("/.netlify/functions/app/download_song", download);
+app.use("/.netlify/functions/app/test", test);
+app.use("/.netlify/functions/app/authors", authors);
+app.use("/.netlify/functions/app/playlist", playlist);
+app.use("/.netlify/functions/app/device_info", deviceInfo);
 
 
 
