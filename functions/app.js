@@ -51,5 +51,5 @@ router.get("/", (req, res) => {
     res.send("App is running running a lot..");
 });
 
-app.use("/.netlify/functions/app", app);
+app.use("/.netlify/functions/app", router);
 module.exports.handler = serverless(app);
