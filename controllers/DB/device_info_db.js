@@ -6,8 +6,8 @@ var pool = mysql
     host: 'sql.freedb.tech',
     user: 'freedb_sultanking',
     password: '%E!9Sq5BpgXpVyE',
-    database: process.env.DB_DATABASE,
-    port: process.env.DB_PORT
+    database: 'freedb_sultan2',
+    port: 3306
   })
   .promise();
 
