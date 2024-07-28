@@ -19,7 +19,7 @@ function checkTime(dbExpTime) {
 
 class JwtV2 {
   constructor() {
-    this.secretToken = '81O7onYIj2nfA7whLDgHPuB7AS8EYK3sBx+oh+6v6ij4f11gtE0dvu+GUWG88xXsfNmAdAeBayMndO/BXPIyo7kJQvVHeH6u3fwbfVVWWP+82eLvMV10n9wCe7Uzs7zrveBx3lJ8p9Mg1Fqq1qJyWWNFh4XJVFWPcECJdTMJdyF19QNLkNac8LZzU9O+6eti';
+    this.secretToken = process.env.JWT_SECRET_TOKEN;
   }
 
   async createJWT(payload, ipAddress) {

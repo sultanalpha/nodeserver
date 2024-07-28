@@ -3,11 +3,11 @@ require("dotenv").config();
 
 var pool = mysql
   .createPool({
-    host: 'sql.freedb.tech',
-    user: 'freedb_sultanking',
-    password: '%E!9Sq5BpgXpVyE',
-    database: 'freedb_sultan2',
-    port: 3306
+    host: process.env.DB_USER,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_DATABASE,
+    port: process.env.DB_PORT
   })
   .promise();
 
