@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const fs = require("fs");
 
 const response = require("../../controllers/response/response.js");
 const remixSongsDB = require("../../controllers/DB/remix_song_DB.js");
@@ -79,6 +80,51 @@ router.get("/search_remix_song", async (req, res) => {
           results.data
         )
       );
+    } else {
+      res.writeHead(401, { "Content-Type": "application/json" });
+      res.end(
+        response.customJSONResponse(
+          401,
+          "Error",
+          results.errorCode,
+          results.message,
+          results.data
+        )
+      );
+    }
+  }
+});
+
+router.get("/load_remix_song", async (req, res) => {
+  const authorization = req.headers.authorization;
+  const songID = req.query.id;
+  console.log(songID);
+  if (!songID) {
+    res.writeHead(400, { "Content-Type": "application/json" });
+    res.end(response.failedJSONResponse("Missing some required fields"));
+    return;
+  }
+
+  if (!authorization || !authorization.startsWith("Bearer")) {
+    response.setInvalidTokenResponse(res);
+  } else {
+    let token = authorization.split(" ")[1];
+    const results = await remixSongsDB.getSongDetails(token, songID);
+    console.log(results.data);
+    if (results.status) {
+      const filePath = `./songs_remix/${results.data["remix_path"]}`;
+      fs.readFile(filePath, (err, data) => {
+        if (err) {
+          console.error(err);
+          res.status(500).end();
+          return;
+        }
+
+        res.setHeader("Content-Type", "audio/mpeg");
+        res.setHeader("Content-Length", data.length);
+
+        res.send(data);
+      });
     } else {
       res.writeHead(401, { "Content-Type": "application/json" });
       res.end(

@@ -100,5 +100,37 @@ async function getRemixSongs(accessToken, songText) {
   }
 }
 
+async function getSongDetails(accessToken, songID) {
+  const userInfo = await jwtv2.verify(accessToken, { verify: {} });
+  try {
+    if (userInfo.status) {
+      const [results] = await pool.query(
+        "SELECT * FROM remix_song WHERE remix_id = ?",
+        [songID]
+      );
+      return {
+        status: true,
+        error: userInfo.errorCode,
+        message: userInfo.message,
+        data: results[0],
+      };
+    } else {
+      return {
+        status: false,
+        errorCode: userInfo.errorCode,
+        message: userInfo.message,
+        data: null,
+      };
+    }
+  } catch (error) {
+    return {
+      status: false,
+      errorCode: userInfo.errorCode,
+      message: userInfo.message,
+      data: null,
+    };
+  }
+}
 
-module.exports = { getAllRemix, getRemixSongs };
+
+module.exports = { getAllRemix, getRemixSongs, getSongDetails };

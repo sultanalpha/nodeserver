@@ -7,7 +7,7 @@ var pool = mysql
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_DATABASE,
-    port: process.env.DB_PORT
+    port: process.env.DB_PORT,
   })
   .promise();
 
@@ -33,9 +33,17 @@ async function addSongToDB(songName, songAvatar, songPath, authorID) {
       "INSERT INTO songs (song_id, song_name, song_avatar, song_path, author_id) VALUES (?, ?, ?, ?, ?)",
       [null, songName, songAvatar, songPath, authorID]
     );
-    return results;
+    return {
+      status: true,
+      data: results,
+      error: null
+    };
   } catch (error) {
-    return error;
+    return {
+      status: false,
+      data: null,
+      error: error
+    };
   }
 }
 
